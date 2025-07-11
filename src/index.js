@@ -1,8 +1,10 @@
 const express = require("express");
 const EmailService = require("./services/EmailService");
-
+const { config } = require("dotenv");
+config();
 const app = express();
 const emailService = new EmailService();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -17,6 +19,8 @@ app.post("/send", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("🚀 Email service running at http://localhost:3000");
+
+
+app.listen(PORT, () => {
+  console.log(`Email service running at http://localhost:${PORT}`);
 });
